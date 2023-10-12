@@ -8,7 +8,9 @@
   "license": "MIT",
   "private": false,
   "scripts": {
-    "build": "esbuild"
+    "build": "npm run build:lib && npm run build:types",
+    "build:lib": "esbuild src/**/* --minify --sourcemap --target=chrome58,firefox57,safari11,edge16 --outdir=lib",
+    "build:types": "tsc --emitDeclarationOnly --outDir types"
   },
   "devDependencies": {
     "esbuild": "^0.19.4",
