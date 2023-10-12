@@ -1,4 +1,4 @@
-export default interface APIRequestInit<Q, P extends Record<string, any>, B> {
+export default interface APIRequestInit<Q, P, B> {
 
     /** Query parameters */
     query: Q,

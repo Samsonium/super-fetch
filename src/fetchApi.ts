@@ -2,7 +2,7 @@ import ParamsError from './errors/ParamsError';
 import APIRecord from './interfaces/APIRecord';
 import APIRequestInit from './interfaces/APIRequestInit';
 
-export default async function fetchApi<Q, P, R, B>(method: APIRecord<Q, P, R, B>, setup: Partial<APIRequestInit<Q, P, B>>): Promise<R> {
+export default async function fetchApi<Q, P, R, B>(method: APIRecord<Q, P, R, B>, setup: Partial<APIRequestInit<Q, P, B>>): Promise<R | null> {
     let endpoint = method.endpoint;
 
     // Replace path params

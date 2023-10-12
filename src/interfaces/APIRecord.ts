@@ -19,6 +19,6 @@ export default interface APIRecord<Query = object, Params = object, Response = o
      */
     handlers?: Partial<{
         onResponse: <T = object>(response: Response) => T;
-        onError: <T = object>(code: number, response: Record<string, any>) => T;
+        onError: <T = object>(code: number, response: Record<string, any> | null) => T;
     }>
 }
