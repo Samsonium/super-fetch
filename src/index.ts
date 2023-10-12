@@ -1,7 +1,7 @@
 import fetchApi from './fetchApi';
 
-import APIRecord from './interfaces/APIRecord';
-import APIRequestInit from './interfaces/APIRequestInit';
+import type APIRecord from './interfaces/APIRecord';
+import type APIRequestInit from './interfaces/APIRequestInit';
 
 export {
     fetchApi as default,
