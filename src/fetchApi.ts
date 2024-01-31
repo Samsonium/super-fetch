@@ -27,12 +27,15 @@ export default async function fetchApi<Q, P, R, B>(method: APIRecord<Q, P, R, B>
     if (setup.query) for (const key in setup.query)
         request.searchParams.set(key, String(setup.query[key]));
 
+    // Generate init object
+    const initObj = Object.assign({}, {
+        method: method.method,
+        body: setup.body ? JSON.stringify(setup.body) : undefined
+    }, setup.options ?? {});
+
     let response: Response;
     try {
-        response = await (await fetch(request, {
-            method: method.method,
-            body: setup.body ? JSON.stringify(setup.body) : undefined
-        })).json();
+        response = await fetch(request, initObj);
 
         const data = await response.json();
         if (response.ok) {

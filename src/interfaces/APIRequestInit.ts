@@ -7,5 +7,8 @@ export default interface APIRequestInit<Q, P, B> {
     params: P,
 
     /** Body */
-    body: B
+    body: B,
+
+    /** Request init object from `fetch` function */
+    options: RequestInit
 }
