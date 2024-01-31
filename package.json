@@ -1,6 +1,6 @@
 {
   "name": "@samsonium/strict-fetch",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "TypeScript util library for strict fetching from API repository",
   "main": "lib/index.js",
   "types": "types/index.d.ts",
