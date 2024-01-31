@@ -1,6 +1,6 @@
 {
   "name": "strict-fetch",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "TypeScript util library for strict fetching from API repository",
   "main": "lib/index.js",
   "types": "types/index.d.ts",
@@ -11,12 +11,13 @@
   "files": ["types", "lib"],
   "scripts": {
     "build": "npm run build:lib && npm run build:types",
-    "build:lib": "esbuild src/**/* --minify --sourcemap --target=chrome58,firefox57,safari11,edge16 --outdir=lib",
+    "build:lib": "esbuild src/**/* --minify --sourcemap --platform=node --target=chrome58,firefox57,safari11,edge16 --outdir=lib",
     "build:types": "tsc --emitDeclarationOnly --outDir types"
   },
   "devDependencies": {
     "esbuild": "^0.19.4",
     "typescript": "^5.2.2",
     "vitest": "^0.34.6"
-  }
+  },
+  "type": "module"
 }
