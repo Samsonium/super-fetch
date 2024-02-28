@@ -1,5 +1,6 @@
 /**
- * Request endpoint info.
+ * Request endpoint info. To disable field,
+ * pass null value to generic.
  *
  * @template Q  Query parameters (in URL after "?")
  * @template P  Path parameters (replaced ":var" variables)
@@ -24,7 +25,7 @@
  *          signIn: {
  *              method: 'POST',
  *              endpoint: '/identity/sign-in'
- *          } as ApiRecord<{}, {}, { access_token: string }, { message: string }, {
+ *          } as ApiRecord<null, null, { access_token: string }, { message: string }, {
  *              login: string,
  *              password: string
  *          }>
@@ -37,7 +38,7 @@
  *      }
  *  };
  */
-export interface ApiRecord<Q = object, P = object, SR = object, ER = object, B = object> {
+export interface ApiRecord<Q = null, P = null, SR = null, ER = null, B = null> {
 
     /**
      * Endpoint path. You can use variables
