@@ -1,6 +1,11 @@
 /*
 
+# Dirs
+!/src
+
 # Files
 !/.gitignore
+!/esbuild.js
 !/package.json
 !/package-lock.json
+!/tsconfig.json
