@@ -13,7 +13,7 @@ export type ApiRequestInit<Q, P, B> = Partial<{
     throwsOnError: boolean;
 
     /** List of headers that will be applied to request */
-    headers: Record<string, string | number | boolean>;
+    headers: HeadersInit;
 
     /** Extra options for Fetch API */
     extra: Partial<{
