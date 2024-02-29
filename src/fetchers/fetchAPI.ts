@@ -74,11 +74,11 @@ export async function fetchApi<Q, P, SR, ER, B>(
 
     // Check for path parameters
     if (url.pathname.includes(':')) {
-        if (!('params' in init))
+        if (!('path' in init))
             throw new ApiParamsError();
 
         // Get params object
-        const values = init.params as Record<string, any>;
+        const values = init.path as Record<string, any>;
 
         // Extract variables from endpoint
         const names = url.pathname.split('/')
