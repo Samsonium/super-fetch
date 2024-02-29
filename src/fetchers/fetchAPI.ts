@@ -108,9 +108,12 @@ export async function fetchApi<Q, P, SR, ER, B>(
 
     // Check body
     if ('body' in init) {
-        if (typeof init.body !== 'string')
+        if (typeof init.body === 'object') {
             requestInit.body = JSON.stringify(init.body);
-        else requestInit.body = init.body;
+
+            if (!requestInit.headers) requestInit.headers = {};
+            requestInit.headers['Content-Type' as keyof HeadersInit] = 'application/json';
+        } else requestInit.body = String(init.body);
     }
 
     // Make request and catch execution error
