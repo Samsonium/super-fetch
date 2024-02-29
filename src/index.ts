@@ -1,3 +1,4 @@
+import {fetchApi} from './fetchers/fetchAPI';
 
 // Errors
 export {ApiUrlError} from './errors/ApiUrlError';
@@ -5,7 +6,9 @@ export {ApiParamsError} from './errors/ApiParamsError';
 export {ApiResponseError} from './errors/ApiResponseError';
 
 // Fetchers
-export {fetchApi} from './fetchers/fetchAPI';
+export const sf = {
+    fetchApi
+}
 
 // API repository
 export {ApiRecord} from './repo/ApiRecord';
