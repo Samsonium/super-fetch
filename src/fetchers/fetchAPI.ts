@@ -73,7 +73,7 @@ export async function fetchApi<Q, P, SR, ER, B>(
     if (init.headers) requestInit.headers = init.headers;
 
     // Check for path parameters
-    if (apiRecord.endpoint.includes(':')) {
+    if (url.pathname.includes(':')) {
         if (!('params' in init))
             throw new ApiParamsError();
 
@@ -81,7 +81,7 @@ export async function fetchApi<Q, P, SR, ER, B>(
         const values = init.params as Record<string, any>;
 
         // Extract variables from endpoint
-        const names = apiRecord.endpoint.split('/')
+        const names = url.pathname.split('/')
             .filter((part) => part.startsWith(':') && part.length > 1)
             .map((part) => part.substring(1));
 
