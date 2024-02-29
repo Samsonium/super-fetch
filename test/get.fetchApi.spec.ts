@@ -68,6 +68,7 @@ describe('Fetch API::GET', () => {
 
         const checkURL = new URL(apiRepo.getWithParams.endpoint.replace(':id', String(0)));
         expect(fetch).toHaveBeenCalledWith(checkURL, {method: 'GET'});
+        expect(res.ok).toBe(true);
     });
 
     test('GET without params for templated endpoint', async () => {
