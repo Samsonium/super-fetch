@@ -98,6 +98,12 @@ export async function fetchApi<Q, P, SR, ER, B>(
         }
     }
 
+    // Add query params if exists
+    if (init.query) {
+        for (const name in init.query)
+            url.searchParams.set(name, String(init.query[name]))
+    }
+
     // Check body
     if ('body' in init) {
         if (typeof init.body !== 'string')
