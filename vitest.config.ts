@@ -9,6 +9,7 @@ export default defineConfig({
         include: ['test/*.spec.ts'],
         exclude: ['**/node_modules/**'],
         environment: 'jsdom',
-        setupFiles: ['test/setup.ts']
+        setupFiles: ['test/setup.ts'],
+        watch: false
     }
 })
