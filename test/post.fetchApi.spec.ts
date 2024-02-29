@@ -1,8 +1,9 @@
+/// <reference path="global.d.ts" />
 import { describe, test, afterEach, expect, Mock } from 'vitest';
 import { ApiRecord, fetchApi } from '../src';
 
 // Declare mocked fetch
-declare const fetch: Mock<[RequestInfo, RequestInit?], Promise<Response>>;
+declare const fetch: Mock<[URL, RequestInit?], Promise<Response>>;
 
 /** API repository */
 const apiRepo = {
