@@ -3,11 +3,12 @@
     "declaration": true,
     "target": "ESNext",
     "lib": ["ESNext", "DOM"],
-    "types": ["test/global.d.ts"],
     "strict": true,
     "noImplicitAny": true,
     "esModuleInterop": true,
     "moduleResolution": "Node",
     "outDir": "lib"
-  }
+  },
+  "include": ["src"],
+  "exclude": ["node_modules"]
 }
