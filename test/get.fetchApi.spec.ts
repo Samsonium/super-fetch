@@ -26,7 +26,7 @@ afterEach(() => {
     fetch.mockReset();
 });
 
-describe('Fetch API', () => {
+describe('Fetch API::GET', () => {
     test('Simple GET', async () => {
         fetch.mockResolvedValue(createResponse(200, 'OK',{hello: 'world'}));
 
