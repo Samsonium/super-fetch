@@ -86,8 +86,10 @@ export async function fetchApi<Q, P, SR, ER, B>(
             .map((part) => part.substring(1));
 
         // Replace variables with values
-        for (const name of names)
+        for (const name of names) {
+            if (!(name in values)) continue;
             url.pathname = url.pathname.replaceAll(new RegExp(':' + name, 'g'), values[name]);
+        }
 
         // Verifying that all variables has been replaced
         if (url.pathname.includes(':')) {
