@@ -2,6 +2,7 @@
 
 # Dirs
 !/src
+!/test
 
 # Files
 !/.gitignore
@@ -9,3 +10,4 @@
 !/package.json
 !/package-lock.json
 !/tsconfig.json
+!/vitest.config.ts
