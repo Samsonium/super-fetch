@@ -1,6 +1,7 @@
 /*
 
 # Dirs
+!/docs
 !/src
 !/test
 
@@ -9,5 +10,6 @@
 !/esbuild.js
 !/package.json
 !/package-lock.json
+!/README.md
 !/tsconfig.json
 !/vitest.config.ts
