@@ -24,8 +24,6 @@ export function groupApi<R extends ApiRepo>(
             ...result,
             [member]: ((init?: ExtractInit<R[keyof R]>) => {
                 return fetchApi(repository[member] as ApiRecord, {
-                    body: null,
-                    path: null,
                     ...(options ?? {}),
                     ...(init ?? {}),
                 }, baseURL);
