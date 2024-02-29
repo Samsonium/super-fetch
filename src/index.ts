@@ -1,4 +1,5 @@
 import {fetchApi} from './fetchers/fetchAPI';
+import {groupApi} from './fetchers/groupApi';
 
 // Errors
 export {ApiUrlError} from './errors/ApiUrlError';
@@ -12,6 +13,6 @@ export {FetchResponse} from './repo/FetchResponse';
 
 // Fetchers
 const sf = {
-    fetchApi
+    fetchApi, groupApi
 };
 export default sf;
