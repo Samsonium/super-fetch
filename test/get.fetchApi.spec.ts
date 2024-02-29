@@ -1,5 +1,8 @@
-import { describe, test, afterEach, expect } from 'vitest';
+import {describe, test, afterEach, expect, Mock} from 'vitest';
 import { ApiRecord, fetchApi } from '../src';
+
+// Declare mocked fetch
+declare const fetch: Mock<[RequestInfo, RequestInit?], Promise<Response>>;
 
 /** API repository */
 const apiRepo = {
@@ -20,12 +23,12 @@ const apiRepo = {
 };
 
 afterEach(() => {
-    (fetch as unknown as FMock).mockReset();
+    fetch.mockReset();
 });
 
 describe('Fetch API', () => {
     test('Simple GET', async () => {
-        (fetch as unknown as FMock).mockResolvedValue(createResponse(200, 'OK',{hello: 'world'}));
+        fetch.mockResolvedValue(createResponse(200, 'OK',{hello: 'world'}));
 
         const res = await fetchApi(apiRepo.simpleGET);
 
@@ -38,7 +41,7 @@ describe('Fetch API', () => {
     });
 
     test('GET with query parameters', async () => {
-        (fetch as unknown as FMock).mockResolvedValue(createResponse(200, 'OK',{items: []}));
+        fetch.mockResolvedValue(createResponse(200, 'OK',{items: []}));
 
         const res = await fetchApi(apiRepo.getWithQuery, {
             query: {
@@ -55,7 +58,7 @@ describe('Fetch API', () => {
     });
 
     test('GET with path parameters', async () => {
-        (fetch as unknown as FMock).mockResolvedValue(createResponse(200, 'OK',{hello: 'world'}));
+        fetch.mockResolvedValue(createResponse(200, 'OK',{hello: 'world'}));
 
         const res = await fetchApi(apiRepo.getWithParams, {
             path: {
@@ -68,14 +71,14 @@ describe('Fetch API', () => {
     });
 
     test('GET without params for templated endpoint', async () => {
-        (fetch as unknown as FMock).mockResolvedValue(createResponse(200, 'OK',{hello: 'world'}));
+        fetch.mockResolvedValue(createResponse(200, 'OK',{hello: 'world'}));
 
         await expect(() => fetchApi(apiRepo.getWithParams))
             .rejects.toThrowError(/The endpoint contains variables/);
     });
 
     test('GET without required params', async () => {
-        (fetch as unknown as FMock).mockResolvedValue(createResponse(200, 'OK',{hello: 'world'}));
+        fetch.mockResolvedValue(createResponse(200, 'OK',{hello: 'world'}));
 
         // @ts-ignore
         await expect(() => fetchApi(apiRepo.getWithParams, {path: {}}))
