@@ -1,6 +1,6 @@
 /// <reference path="global.d.ts" />
 import {describe, test, afterEach, expect, Mock} from 'vitest';
-import { ApiRecord, fetchApi } from '../src';
+import sf, { ApiRecord } from '../src';
 
 // Declare mocked fetch
 declare const fetch: Mock<[URL, RequestInit?], Promise<Response>>;
@@ -31,7 +31,7 @@ describe('Fetch API::GET', () => {
     test('Simple GET', async () => {
         fetch.mockResolvedValue(createResponse(200, 'OK',{hello: 'world'}));
 
-        const res = await fetchApi(apiRepo.simpleGET);
+        const res = await sf.fetchApi(apiRepo.simpleGET);
 
         expect(fetch).toHaveBeenCalledWith(new URL(apiRepo.simpleGET.endpoint), {method: 'GET'});
 
@@ -44,7 +44,7 @@ describe('Fetch API::GET', () => {
     test('GET with query parameters', async () => {
         fetch.mockResolvedValue(createResponse(200, 'OK',{items: []}));
 
-        const res = await fetchApi(apiRepo.getWithQuery, {
+        const res = await sf.fetchApi(apiRepo.getWithQuery, {
             query: {
                 page: 1
             }
@@ -61,7 +61,7 @@ describe('Fetch API::GET', () => {
     test('GET with path parameters', async () => {
         fetch.mockResolvedValue(createResponse(200, 'OK',{hello: 'world'}));
 
-        const res = await fetchApi(apiRepo.getWithParams, {
+        const res = await sf.fetchApi(apiRepo.getWithParams, {
             path: {
                 id: 0
             }
@@ -75,7 +75,7 @@ describe('Fetch API::GET', () => {
     test('GET without params for templated endpoint', async () => {
         fetch.mockResolvedValue(createResponse(200, 'OK',{hello: 'world'}));
 
-        await expect(() => fetchApi(apiRepo.getWithParams))
+        await expect(() => sf.fetchApi(apiRepo.getWithParams))
             .rejects.toThrowError(/The endpoint contains variables/);
     });
 
@@ -83,7 +83,7 @@ describe('Fetch API::GET', () => {
         fetch.mockResolvedValue(createResponse(200, 'OK',{hello: 'world'}));
 
         // @ts-ignore
-        await expect(() => fetchApi(apiRepo.getWithParams, {path: {}}))
+        await expect(() => sf.fetchApi(apiRepo.getWithParams, {path: {}}))
             .rejects.toThrowError(/The following fields is missing \(1\)/);
     });
 });

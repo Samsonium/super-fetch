@@ -1,6 +1,6 @@
 /// <reference path="global.d.ts" />
 import { describe, test, afterEach, expect, Mock } from 'vitest';
-import { ApiRecord, fetchApi } from '../src';
+import sf, { ApiRecord } from '../src';
 
 // Declare mocked fetch
 declare const fetch: Mock<[URL, RequestInit?], Promise<Response>>;
@@ -36,7 +36,7 @@ describe('Fetch API::POST', () => {
     test('Simple POST', async () => {
         fetch.mockResolvedValue(createResponse(200, 'OK', {}));
 
-        const res = await fetchApi(apiRepo.simplePOST, {
+        const res = await sf.fetchApi(apiRepo.simplePOST, {
             body: {
                 hello: 'world'
             }
@@ -56,7 +56,7 @@ describe('Fetch API::POST', () => {
         fetch.mockResolvedValue(createResponse(200, 'OK', {}));
 
         const token = 'someTokenValue';
-        const res = await fetchApi(apiRepo.postWithAuth, {
+        const res = await sf.fetchApi(apiRepo.postWithAuth, {
             headers: {
                 'Authorization': `Bearer ${token}`
             }
@@ -74,7 +74,7 @@ describe('Fetch API::POST', () => {
     test('POST with extras', async () => {
         fetch.mockResolvedValue(createResponse(200, 'OK', {}));
 
-        const res = await fetchApi(apiRepo.postWithExtras, {
+        const res = await sf.fetchApi(apiRepo.postWithExtras, {
             extra: {
                 mode: 'cors'
             }
@@ -90,7 +90,7 @@ describe('Fetch API::POST', () => {
     test('POST with non-JSON value', async () => {
         fetch.mockResolvedValue(createResponse(200, 'OK', {}));
 
-        const res = await fetchApi(apiRepo.postWithNonJSON, {
+        const res = await sf.fetchApi(apiRepo.postWithNonJSON, {
             body: 'HELLOWORLD'
         });
 
