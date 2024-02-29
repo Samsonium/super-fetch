@@ -26,7 +26,19 @@ export function groupApi<R extends ApiRepo>(
                 return fetchApi(repository[member] as ApiRecord, {
                     ...(options ?? {}),
                     ...(init ?? {}),
-                }, baseURL);
+                    ...(options?.headers || init?.headers ? {
+                        headers: {
+                            ...(options?.headers ?? {}),
+                            ...(init?.headers ?? {})
+                        }
+                    } : {}),
+                    ...(options?.extra || init?.extra ? {
+                        extra: {
+                            ...(options?.extra ?? {}),
+                            ...(init?.extra ?? {})
+                        }
+                    } : {})
+                } as any, baseURL);
             }) as unknown
         };
         else result = {
