@@ -88,7 +88,12 @@ async function makeRequest<S = any, E = any>(
         throw new Error(`Request failed: [${response.status}]: ${response.statusText}`);
 
     // Get text contents
-    const data = await response.text();
+    let data: string;
+    try {
+        data = await response.text();
+    } catch (_) {
+        data = '';
+    }
 
     // Return generated functions
     return {
