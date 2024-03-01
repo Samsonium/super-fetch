@@ -122,4 +122,13 @@ export default {
     put: (url, init?) => makeRequest('PUT', url, init),
     patch: (url, init?) => makeRequest('PATCH', url, init),
     delete: (url, init?) => makeRequest('DELETE', url, init),
-} satisfies Record<string, SimpleRequestFunc<any, any>>;
+    parallel: (requests) => Promise.all(requests)
+} satisfies {
+    get: SimpleRequestFunc<any, any>,
+    post: SimpleRequestFunc<any, any>,
+    put: SimpleRequestFunc<any, any>,
+    patch: SimpleRequestFunc<any, any>,
+    delete: SimpleRequestFunc<any, any>,
+    parallel: (requests: Promise<Omit<FetchResponse<any, any>, 'data'> & FetchResponseHandlers<any, any>>[])
+        => Promise<(Omit<FetchResponse<any, any>, 'data'> & FetchResponseHandlers<any, any>)[]>
+};
