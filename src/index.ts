@@ -1,10 +1,19 @@
-import fetchApi from './fetchApi';
+import {fetchApi} from './fetchers/fetchAPI';
+import {groupApi} from './fetchers/groupApi';
+import simple from './fetchers/simple';
 
-import type APIRecord from './interfaces/APIRecord';
-import type APIRequestInit from './interfaces/APIRequestInit';
+// Errors
+export {ApiUrlError} from './errors/ApiUrlError';
+export {ApiParamsError} from './errors/ApiParamsError';
+export {ApiResponseError} from './errors/ApiResponseError';
 
-export {
-    fetchApi as default,
-    APIRequestInit,
-    APIRecord
+// API repository
+export {ApiRecord} from './repo/ApiRecord';
+export {ApiRequestInit} from './repo/ApiRequestInit';
+export {FetchResponse} from './repo/FetchResponse';
+
+// Fetchers
+const sf = {
+    fetchApi, groupApi, ...simple
 };
+export default sf;

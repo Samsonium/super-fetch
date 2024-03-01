@@ -1,23 +1,24 @@
 {
-  "name": "@samsonium/strict-fetch",
-  "version": "1.0.1",
-  "description": "TypeScript util library for strict fetching from API repository",
+  "name": "@samsonium/super-fetch",
+  "version": "1.0.0",
+  "description": "Enhanced Fetch API library",
   "main": "lib/index.js",
-  "types": "types/index.d.ts",
-  "repository": "git@github.com:Samsonium/strict-fetch.git",
-  "author": "Samsonium <tdesu@vk.com>",
-  "license": "MIT",
-  "private": false,
-  "files": ["types", "lib"],
+  "module": "lib/index.js",
+  "types": "lib/index.d.ts",
   "scripts": {
-    "build": "npm run build:lib && npm run build:types",
-    "build:lib": "esbuild src/**/* --minify --sourcemap --platform=node --target=chrome58,firefox57,safari11,edge16 --outdir=lib",
-    "build:types": "tsc --emitDeclarationOnly --outDir types"
+    "build:types": "tsc --emitDeclarationOnly --outDir lib",
+    "build": "rimraf lib && node ./esbuild.js && npm run build:types",
+    "test": "vitest"
   },
+  "keywords": [],
+  "author": "Samsonium",
+  "license": "ISC",
   "devDependencies": {
-    "esbuild": "^0.19.4",
-    "typescript": "^5.2.2",
-    "vitest": "^0.34.6"
-  },
-  "type": "module"
+    "@types/node": "^20.11.21",
+    "esbuild": "^0.20.1",
+    "jsdom": "^24.0.0",
+    "rimraf": "^5.0.5",
+    "typescript": "^5.3.3",
+    "vitest": "^1.3.1"
+  }
 }

@@ -2,7 +2,6 @@
   "compilerOptions": {
     "declaration": true,
     "target": "ESNext",
-    "module": "ESNext",
     "lib": ["ESNext", "DOM"],
     "strict": true,
     "noImplicitAny": true,
@@ -10,5 +9,6 @@
     "moduleResolution": "Node",
     "outDir": "lib"
   },
-  "include": ["src"]
+  "include": ["src"],
+  "exclude": ["node_modules"]
 }
