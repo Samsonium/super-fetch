@@ -1,14 +1,15 @@
 import { ApiRequestInit } from '../repo/ApiRequestInit';
+import { FetchResponse } from '../repo/FetchResponse';
 
 /** Fetch response with JSON and text out */
-type FetchResponse<S, E> = {
+type FetchResponseHandlers<S, E> = {
     json: () => Promise<S | E | null>,
     text: () => Promise<string | null>
 }
 
 /** Simple request function */
 type SimpleRequestFunc<S, E> = (url: string | URL, init?: ApiRequestInit<any, null, any>)
-    => Promise<FetchResponse<S, E>>;
+    => Promise<Omit<FetchResponse<S, E>, 'data'> & FetchResponseHandlers<S, E>>;
 
 /**
  * Base function for simple requests
@@ -20,7 +21,7 @@ async function makeRequest<S = any, E = any>(
     method: string,
     url: string | URL,
     init?: ApiRequestInit<any, null, any>
-): Promise<FetchResponse<S, E>> {
+): Promise<Omit<FetchResponse<S, E>, 'data'> & FetchResponseHandlers<S, E>> {
     init ??= {};
 
     // Create fetch request options
@@ -73,6 +74,9 @@ async function makeRequest<S = any, E = any>(
             throw new Error(text);
 
         return {
+            ok: false,
+            statusCode: 0,
+            statusText: text,
             json: async () => null,
             text: async () => null
         };
@@ -88,6 +92,9 @@ async function makeRequest<S = any, E = any>(
 
     // Return generated functions
     return {
+        ok: response.ok,
+        statusCode: response.status,
+        statusText: response.statusText,
         json: async () => {
             try {
                 return JSON.parse(data) as S | E;
@@ -105,9 +112,9 @@ async function makeRequest<S = any, E = any>(
 }
 
 export default {
-    get: (url, init) => makeRequest('GET', url, init),
-    post: (url, init) => makeRequest('POST', url, init),
-    put: (url, init) => makeRequest('PUT', url, init),
-    patch: (url, init) => makeRequest('PATCH', url, init),
-    delete: (url, init) => makeRequest('DELETE', url, init),
+    get: (url, init?) => makeRequest('GET', url, init),
+    post: (url, init?) => makeRequest('POST', url, init),
+    put: (url, init?) => makeRequest('PUT', url, init),
+    patch: (url, init?) => makeRequest('PATCH', url, init),
+    delete: (url, init?) => makeRequest('DELETE', url, init),
 } satisfies Record<string, SimpleRequestFunc<any, any>>;
