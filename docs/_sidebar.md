@@ -1,4 +1,4 @@
-![](poster.png)
+![](../poster.png)
 
-* [Home](/)
-* [Guide](guide.md)
+* [Home](/README.md)
+* [Usage examples](/examples.md "Usage examples")
