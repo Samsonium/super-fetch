@@ -257,13 +257,15 @@ const result = await sf.parallel([sf.get('/profile/avatar'), sf.get('/profile/in
         ok: true,
         statusCode: 200,
         statusText: 'OK',
-        data: 'https://example.com/link/to/avatar.jpg'
+        json: Function,
+        text: Function
     },
     {
         ok: false,
         statusCode: 404,
         statusText: 'Not found',
-        data: null
+        json: Function,
+        text: Function
     }
  ]
  */
