@@ -6,6 +6,10 @@ type FetchResponse<S, E> = {
     text: () => Promise<string | null>
 }
 
+/** Simple request function */
+type SimpleRequestFunc<S, E> = (url: string | URL, init?: ApiRequestInit<any, null, any>)
+    => Promise<FetchResponse<S, E>>;
+
 /**
  * Base function for simple requests
  * @param method HTTP method
@@ -99,3 +103,11 @@ async function makeRequest<S = any, E = any>(
         text: async () => data
     };
 }
+
+export default {
+    get: (url, init) => makeRequest('GET', url, init),
+    post: (url, init) => makeRequest('POST', url, init),
+    put: (url, init) => makeRequest('PUT', url, init),
+    patch: (url, init) => makeRequest('PATCH', url, init),
+    delete: (url, init) => makeRequest('DELETE', url, init),
+} satisfies Record<string, SimpleRequestFunc<any, any>>;
