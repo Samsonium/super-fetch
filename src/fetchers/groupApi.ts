@@ -39,11 +39,11 @@ export function groupApi<R extends ApiRepo>(
                         }
                     } : {})
                 } as any, baseURL);
-            }) as unknown
+            })
         };
         else result = {
             ...result,
-            [member]: groupApi(baseURL, repository[member] as ApiRepo, options) as unknown
+            [member]: groupApi(baseURL, repository[member] as ApiRepo, options)
         };
     }
 
