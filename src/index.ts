@@ -1,6 +1,7 @@
 import {fetchApi} from './fetchers/fetchAPI';
 import {groupApi} from './fetchers/groupApi';
 import simple from './fetchers/simple';
+import {Sequence} from './fetchers/sequence';
 
 // Errors
 export {ApiUrlError} from './errors/ApiUrlError';
@@ -14,6 +15,7 @@ export {FetchResponse} from './repo/FetchResponse';
 
 // Fetchers
 const sf = {
-    fetchApi, groupApi, ...simple
+    fetchApi, groupApi, ...simple,
+    Sequence
 };
 export default sf;

@@ -1,0 +1,2 @@
+/** Sequence */
+export class Sequence {}
