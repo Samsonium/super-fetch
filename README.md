@@ -14,9 +14,9 @@ HTTP requests using the [Fetch API](https://developer.mozilla.org/en-US/docs/Web
 
 - ✅ **API**: fetch based on API repository with an opportunity to define query parameters,
   express-like path parameters, success and error response bodies and request body.
-- 🏗️ **Simple**: a simplified way to make calls using `.get`, `.post` and other REST API methods.
-- 🏗️ **Linked sequence**: A codependent request environment in which old requests cannot overlap new ones.
-- 📃 **Long polling**: Customizable long-polling requests.
+- ✅ **Simple**: a simplified way to make calls using `.get`, `.post` and other REST API methods.
+- ✅ **Linked sequence**: A codependent request environment in which old requests cannot overlap new ones.
+- ✅ **Long polling**: Customizable long-polling requests.
 
 ### Documentation
 Work on documentation in progress...

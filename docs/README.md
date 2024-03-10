@@ -16,8 +16,8 @@ interface for making HTTP requests using
 - ✅ **API**: queries built on the basis of the API repository, allowing you to specify types for query parameters,
   path parameters as in express, bodies of successful and unsuccessful responses, as well as the body of the request.
 - ✅ **Simple**: a simplified way of making requests using `.get`, `.post` and other REST API methods.
-- 🏗️ (будет в 1.1.0) **Linked sequence**: A codependent query environment in which old responses cannot overwrite new ones.
-- 📃 (будет в 1.2.0) **Long polling**: Controlled long polling.
+- ✅ **Linked sequence**: A codependent query environment in which old responses cannot overwrite new ones.
+- ✅ **Long polling**: Controlled long polling.
 
 ### Installation
 You can install the library using NPM:
