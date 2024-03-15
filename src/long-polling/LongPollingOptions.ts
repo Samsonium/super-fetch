@@ -4,7 +4,7 @@ import { ApiRequestInit } from '../repo/ApiRequestInit';
 /** Long-polling setup options */
 export interface LongPollingOptions<Q, P, SR, ER, B> {
     /** Long-polling target URL */
-    url: URL | string | ApiRecord<Q, P, SR, ER, B>,
+    url: ApiRecord<Q, P, SR, ER, B>,
 
     /**
      * Connection timeout in seconds.
