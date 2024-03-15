@@ -13,6 +13,12 @@ export interface LongPollingOptions<Q, P, SR, ER, B> {
     timeout: number;
 
     /**
+     * Number of consecutive timeouts after which
+     * long-polling stops. Default: `3`
+     */
+    timeoutRetries: number;
+
+    /**
      * Should long-polling start after instance created.
      * Default: `true`
      */
