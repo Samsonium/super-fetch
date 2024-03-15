@@ -1,4 +1,5 @@
 import { ApiRecord } from '../repo/ApiRecord';
+import { ApiRequestInit } from '../repo/ApiRequestInit';
 
 /** Long-polling setup options */
 export interface LongPollingOptions<Q, P, SR, ER, B> {
@@ -22,4 +23,7 @@ export interface LongPollingOptions<Q, P, SR, ER, B> {
      * Default: `1000`
      */
     delay: number;
+
+    /** Request options for query params and body */
+    request: ApiRequestInit<Q, P, B>;
 }
