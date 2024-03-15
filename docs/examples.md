@@ -281,3 +281,101 @@ import sf from '@samsonium/super-fetch';
 const result = await sf.parallel([sf.get('/profile/avatar'), sf.get('/profile/info')], true);
 // -> Error
 ```
+
+## Sequence
+Sequence allows you to make responses from the server more stable, because it implements
+identifiers for responses and it makes impossible to overwrite newer data with older
+responses that executes longer and has been finished after newer requests.
+
+This type of requests can help you if you, for example, have a data filtering component
+in some project with reactive framework (like Svelte, Vue, React, etc.) and filter
+can be triggered many times from one change or, simply, you need to make your filtering
+more stable.
+
+Sequence supplied as class and before start requesting you need to instantiate
+Sequence class and specify initial options:
+
+```ts
+import sf from '@samsonium/super-fetch';
+
+// ===== [ Instantiate sequence ]
+const seq = new sf.Sequence(apiRecord);
+
+// Or with options
+const seqWithOpts = new sf.Sequence({
+   ... // same as for init argument in `fetchApi` function
+});
+
+// ===== [ Make call ]
+seq.call();
+
+// Or
+seq.call({
+   ... // same as `fetchApi` init options
+});
+
+// ===== [ Retrive data ]
+const freshData = seq.read();
+```
+
+## LongPolling
+LongPolling class implements long-polling (ha-ha) with
+automatic and manual controls.
+
+### Simple example
+
+```ts
+import sf from '@samsonium/super-fetch';
+
+const lp = new sf.LongPolling('https://api.some.com/some/method', (res) => {
+    // `res` contains the last poll response
+   
+    // If you need to continue long-polling, you must
+    // return `true` from this handling function.
+    // Or if the purpose of the long-polling has been
+    // reached you can return `false` to stop polling
+    // process.
+    return true;
+});
+```
+
+### Long-polling options
+
+```ts
+import sf from '@samsonium/super-fetch';
+
+const lp = new sf.LongPolling('https://api.some.com/some/method', handler, {
+   timeout: 10, // timeout in seconds after which request will be cancelled
+   timeoutRetrues: 10, // number of consecutive timeouts after which long-polling stops
+   autoStart: false, // should long-polling starts immediately
+   delay: 2000, // delay between polling requests
+   request: {
+      query: {}, // query-params
+      throwsOnError: true, // throw error if request fails
+      headers: { // request headers list
+          'Content-Type': 'image/svg'
+      },
+      extra: {}, // additional options from browsers `fetch`
+      path: {}, // path params (see `fetchApi` examples)
+      body: {}, // request body
+   }
+});
+```
+
+### Manual long-polling control
+
+```ts
+import sf from '@samsonium/super-fetch';
+
+const lp = new sf.LongPolling('https://api.some.com/some/method', handler, {
+    autoStart: false
+});
+
+// Start polling
+lp.start();
+lp.start(); // <- next `start` calls will be ignored if already started
+
+// Stop polling
+lp.stop();
+
+```

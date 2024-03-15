@@ -11,6 +11,7 @@ import { ApiResponseError } from '../errors/ApiResponseError';
  * @param apiRecord ApiRecord info
  * @param init Request init object
  * @param baseURL Base URl of requesting method
+ * @param abortController AbortController instance
  *
  * @template Q  Query parameters
  * @template P  Path parameters
@@ -48,7 +49,8 @@ import { ApiResponseError } from '../errors/ApiResponseError';
 export async function fetchApi<Q, P, SR, ER, B>(
     apiRecord: ApiRecord<Q, P, SR, ER, B>,
     init?: ApiRequestInit<Q, P, B>,
-    baseURL?: string
+    baseURL?: string,
+    abortController?: AbortController
 ): Promise<FetchResponse<SR, ER>> {
     init ??= {} as ApiRequestInit<Q, P, B>;
     let requestInit: RequestInit = {
