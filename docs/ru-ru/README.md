@@ -1,7 +1,7 @@
 ![Poster](../poster.png)
 
 # Super Fetch
-Библиотека Super Fetch — это легковесная библиотека ESM (19.8 KB), которая обеспечивает строгий и безопасный
+Библиотека Super Fetch — это легковесная библиотека ESM (распакованных 48.8 kB), которая обеспечивает строгий и безопасный
 интерфейс для выполнения HTTP-запросов с использованием
 [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API).
 
