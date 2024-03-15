@@ -1,7 +1,7 @@
 ![Poster](poster.png)
 
 # Super Fetch
-The Super Fetch library is a lightweight (19.8 KB) ESM library that provides strict and secure
+The Super Fetch library is a lightweight (48.8 kB unpacked) ESM library that provides strict and secure
 interface for making HTTP requests using
 [Fetch API](https://developer.mozilla.orgen-USdocsWebAPIFetch_API).
 
