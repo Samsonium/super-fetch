@@ -11,9 +11,6 @@ import { ApiRequestInit } from '../repo/ApiRequestInit';
  * @template B  request body
  */
 export interface LongPollingOptions<Q, P, SR, ER, B> {
-    /** Long-polling target URL */
-    url: ApiRecord<Q, P, SR, ER, B>,
-
     /**
      * Connection timeout in seconds.
      * Default: `20`

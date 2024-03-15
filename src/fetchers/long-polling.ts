@@ -10,7 +10,9 @@ import { fetchApi } from './fetchAPI';
 export class LongPolling<Q = any, P = any, SR = any, ER = any, B = any> {
 
     /** Long-polling options */
-    private readonly options: LongPollingOptions<Q, P, SR, ER, B>;
+    private readonly options: LongPollingOptions<Q, P, SR, ER, B> & {
+        url: ApiRecord<Q, P, SR, ER, B>
+    };
 
     /** Poll step handler */
     private readonly pollHandler: PollStep<SR, ER>;
