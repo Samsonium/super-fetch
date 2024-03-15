@@ -41,13 +41,17 @@ describe('Sequence', () => {
         await seq.call();
         expect(seq.read()?.data).toStrictEqual({items: ['hello']});
 
-        fetch.mockResolvedValue(createResponse(200, 'OK', {items: ['world']}));
+        fetch.mockReturnValue(new Promise(r => {
+            setTimeout(() => {
+                r(createResponse(200, 'OK', {items: ['world']}));
+            }, 1000);
+        }));
         seq.call().then();
         expect(seq.read()?.data).toStrictEqual({items: ['hello']});
 
         fetch.mockResolvedValue(createResponse(200, 'OK', {items: ['!']}));
         seq.call().then();
-        await new Promise(r => setTimeout(r, 1000));
+        await new Promise(r => setTimeout(r, 1500));
 
         expect(seq.read()?.data).toStrictEqual({items: ['!']});
     });
