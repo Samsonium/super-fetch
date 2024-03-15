@@ -1,7 +1,15 @@
 import { ApiRecord } from '../repo/ApiRecord';
 import { ApiRequestInit } from '../repo/ApiRequestInit';
 
-/** Long-polling setup options */
+/**
+ * Long-polling setup options.
+ *
+ * @template Q  query params
+ * @template P  path params
+ * @template SR success body response
+ * @template ER error body response
+ * @template B  request body
+ */
 export interface LongPollingOptions<Q, P, SR, ER, B> {
     /** Long-polling target URL */
     url: ApiRecord<Q, P, SR, ER, B>,
