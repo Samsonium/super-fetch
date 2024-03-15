@@ -2,7 +2,7 @@ import {fetchApi} from './fetchers/fetchAPI';
 import {groupApi} from './fetchers/groupApi';
 import simple from './fetchers/simple';
 import {Sequence} from './fetchers/sequence';
-import {LongPolling} from './fetchers/LongPolling';
+import {LongPolling} from './fetchers/long-polling';
 
 // Errors
 export {ApiUrlError} from './errors/ApiUrlError';
