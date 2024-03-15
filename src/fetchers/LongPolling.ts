@@ -107,7 +107,7 @@ export class LongPolling<Q = any, P = any, SR = any, ER = any, B = any> {
 
             if (this.timeouts < timeoutRetries) setTimeout(this.poll.bind(this), delay);
             else this.stop();
-        }, timeout);
+        }, timeout * 1000);
 
         // Make call
         const res = await fetchApi(url, request);
