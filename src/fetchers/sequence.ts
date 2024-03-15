@@ -1,5 +1,4 @@
 import { ApiRecord } from '../repo/ApiRecord';
-import { FetchResponse } from '../repo/FetchResponse';
 import { SequenceResponse } from '../utils/SequenceResponse';
 import { ExtractInit, ExtractResponse } from '../utils';
 import { fetchApi } from './fetchAPI';
